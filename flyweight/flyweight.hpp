@@ -1,5 +1,4 @@
-#ifndef FLYWEIGHT_HPP
-#define FLYWEIGHT_HPP
+#pragma once
 
 #include <iostream>
 #include <memory>
@@ -8,29 +7,28 @@
 
 namespace jc {
 
-	class Flyweight {
-	public:
-		virtual void Print() = 0;
-		virtual ~Flyweight() = default;
-	};
+class Flyweight {
+ public:
+  virtual void Print() = 0;
+  virtual ~Flyweight() = default;
+};
 
-	class ConcreteFlyweight : public Flyweight {
-	public:
-		explicit ConcreteFlyweight(char key);
-		void Print() override;
+class ConcreteFlyweight : public Flyweight {
+ public:
+  explicit ConcreteFlyweight(char key) : key_(key) {}
 
-	private:
-		char key_;
-	};
+  void Print() override { std::cout << key_; }
 
-	class FlyweightFactory {
-	public:
-		std::unique_ptr<Flyweight>& FlyweightPtr(char c);
+ private:
+  char key_;
+};
 
-	private:
-		std::unordered_map<char, std::unique_ptr<Flyweight>> m_;
-	};
+class FlyweightFactory {
+ public:
+  std::unique_ptr<Flyweight>& FlyweightPtr(char c);
+
+ private:
+  std::unordered_map<char, std::unique_ptr<Flyweight>> m_;
+};
 
 }  // namespace jc
-
-#endif // FLYWEIGHT_HPP
