@@ -16,7 +16,3 @@ if(BUILD_TESTS)
   target_link_libraries(flyweighttests gtest_main)  # Линкуем библиотеки для тестов.
   add_test(NAME flyweighttests COMMAND flyweighttests)  # Добавляем команду для запуска тестов.
 endif()
-
-if(BUILD_EXAMPLES)
-  add_executable(Flyweight flyweight/flyweight.cpp flyweight/flyweight.hpp flyweight/main.cpp)
-endif()
