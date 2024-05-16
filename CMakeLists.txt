@@ -4,6 +4,7 @@ set(CMAKE_CXX_STANDARD 17)  # Устанавливаем стандарт C++ 17
 project(Flyweight)  # Задаем название проекта.
 
 option(BUILD_TESTS "Build tests" OFF)  # Опция для сборки тестов. По умолчанию включена.
+option(BUILD_EXAMPLES "Build examples" OFF)
 
 add_executable(Flyweight flyweight/flyweight.cpp flyweight/flyweight.hpp)  # Создаем исполняемый файл.
 
@@ -14,4 +15,8 @@ if(BUILD_TESTS)
   add_executable(flyweighttests ${${PROJECT_NAME}_TEST_SOURCES})  # Создаем исполняемый файл для тестов.
   target_link_libraries(flyweighttests gtest_main)  # Линкуем библиотеки для тестов.
   add_test(NAME flyweighttests COMMAND flyweighttests)  # Добавляем команду для запуска тестов.
+endif()
+
+if(BUILD_EXAMPLES)
+  add_executable(Flyweight flyweight/flyweight.cpp flyweight/flyweight.hpp flyweight/main.cpp)
 endif()
