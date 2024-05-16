@@ -41,7 +41,9 @@ jobs:
 
     - name: Make Flyweight
       run: |
+        cmake -H${{github.workspace}} -B ${{github.workspace}}/build BUILD_EXAMPLES=ON
         cmake --build ${{github.workspace}}/build
+        cd ${{github.workspace}}/build
         make
 
     - name: Artifacts
