@@ -40,7 +40,9 @@ jobs:
       run: ${{github.workspace}}/build/flyweighttests
 
     - name: Make Flyweight
-      run: cmake --build ${{github.workspace}}/build
+      run: |
+        cmake --build ${{github.workspace}}/build
+        make
 
     - name: Artifacts
       uses: actions/upload-artifact@v4
