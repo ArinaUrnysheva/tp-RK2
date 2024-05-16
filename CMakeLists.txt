@@ -1,20 +1,17 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.5)  # Указываем минимальную версию CMake, необходимую для сборки проекта.
+set(CMAKE_CXX_STANDARD 17)  # Устанавливаем стандарт C++ 17.
 
-set(CMAKE_CXX_STANDARD 17)
+project(Flyweight)  # Задаем название проекта.
 
-project(PrototypePattern)
+option(BUILD_TESTS "Build tests" OFF)  # Опция для сборки тестов. По умолчанию включена.
 
-set(SOURCE_FILES flyweight/Flyweight.cpp)
+add_executable(Flyweight flyweight.cpp flyweight.hpp)  # Создаем исполняемый файл.
 
-add_executable(PrototypePattern ${SOURCE_FILES})
-
-enable_testing()
-
-# Подключение библиотеки Google Test
-add_subdirectory(third-party/gtest)
-include_directories(third-party/gtest/googletest/include)
-
-# Добавление исполняемого файла для теста
-add_executable(flyweighttest tests/FlyweightTest.cpp)
-target_link_libraries(flyweighttest gtest gtest_main)
-add_test(NAME flyweighttest COMMAND flyweighttest)
+if(BUILD_TESTS)
+  enable_testing()  # Включаем поддержку тестирования.
+  file(GLOB ${PROJECT_NAME}_TEST_SOURCES tests/*.cpp)  # Получаем исходные файлы тестов.
+  add_subdirectory(third-party/gtest) # Добавляем библиотеку Google Test
+  add_executable(flyweighttests ${${PROJECT_NAME}_TEST_SOURCES})  # Создаем исполняемый файл для тестов.
+  target_link_libraries(flyweighttests gtest_main)  # Линкуем библиотеки для тестов.
+  add_test(NAME flyweighttests COMMAND flyweighttests)  # Добавляем команду для запуска тестов.
+endif()
