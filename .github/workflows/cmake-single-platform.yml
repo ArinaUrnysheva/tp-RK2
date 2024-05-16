@@ -39,15 +39,8 @@ jobs:
     - name: Run tests
       run: ${{github.workspace}}/build/flyweighttests
 
-    - name: Make Flyweight
-      run: |
-        cmake -H${{github.workspace}} -B ${{github.workspace}}/build BUILD_EXAMPLES=ON
-        cmake --build ${{github.workspace}}/build
-        cd ${{github.workspace}}/build
-        make
-
     - name: Artifacts
       uses: actions/upload-artifact@v4
       with:
           name: linux_artifacts
-          path: ${{github.workspace}}/build/Flyweight
+          path: ${{github.workspace}}/build/flyweighttests
