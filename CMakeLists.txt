@@ -5,7 +5,7 @@ project(Flyweight)  # Задаем название проекта.
 
 option(BUILD_TESTS "Build tests" OFF)  # Опция для сборки тестов. По умолчанию включена.
 
-add_executable(Flyweight flyweight.cpp flyweight.hpp)  # Создаем исполняемый файл.
+add_executable(Flyweight flyweight/flyweight.cpp flyweight/flyweight.hpp)  # Создаем исполняемый файл.
 
 if(BUILD_TESTS)
   enable_testing()  # Включаем поддержку тестирования.
